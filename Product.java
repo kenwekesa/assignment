@@ -1,14 +1,14 @@
-public class Product {
+public class Product implements Comparable<Product>{
     private int id;
     private String name,warehouse;
-    protected double cost;
+    protected String cost;
     protected int weight,length, width, height,aisle,bin,shelf,amount;
 
     Product()
     {
         warehouse=name=null;
         weight=length=width=aisle=bin=shelf=amount=id=height=0;
-        cost=0.00;
+        cost=null;
 
     }
 
@@ -28,7 +28,7 @@ public class Product {
 
     public void setWarehouse(String warehouse){
         this.warehouse=warehouse;}
-    public void setCost(double cost)
+    public void setCost(String cost)
     {
         this.cost = cost;
     }
@@ -67,7 +67,7 @@ public class Product {
         return id;
     }
 
-    public double getCost() {
+    public String getCost() {
         return cost;
     }
 
@@ -111,4 +111,8 @@ public class Product {
         return warehouse;
     }
 
+    @Override
+    public int compareTo(Product prod) {
+        if(this.aisle.compareTo(prod.aisle))
+    }
 }
