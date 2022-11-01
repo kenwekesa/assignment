@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
 
@@ -46,7 +47,12 @@ public class assignment5 {
             product_list.add(product);
         }
 
-        System.out.println(product_list);
+        Collections.sort(product_list);
+
+        for(Product pro: product_list)
+        {
+            System.out.println(pro.getWarehouse());
+        }
     }
 
     public static void getOrders() throws ParseException {

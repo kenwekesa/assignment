@@ -113,6 +113,18 @@ public class Product implements Comparable<Product>{
 
     @Override
     public int compareTo(Product prod) {
-        if(this.aisle.compareTo(prod.aisle))
+         return (this.aisle - prod.aisle);
     }
+
+
+/*
+        @Override
+        //this is required to print the user-friendly information about the Employee
+        public String toString() {
+            return "[id=" + this.id + ", name=" + this.name + ", age=" + this.age + ", salary=" +
+                    this.salary + "]";
+        }
+*/
+
+
 }
