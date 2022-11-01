@@ -1,6 +1,7 @@
+import java.util.Comparator;
 import java.util.Date;
 
-public class Order {
+public class Order implements Comparable<Order>{
     protected Date date;
     protected int product_id;
     private int id;
@@ -39,5 +40,17 @@ public class Order {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    @Override
+    public int compareTo(Order order) {
+        return Comparator.comparing(Order::getId)
+                .compare(this, order);
+    }
+
+    @Override
+    //this is required to print the user-friendly information about the Order object
+    public String toString() {
+        return "Order ID: " + this.id +" ";
     }
 }

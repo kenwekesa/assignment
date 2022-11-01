@@ -1,3 +1,5 @@
+import java.util.Comparator;
+
 public class Product implements Comparable<Product>{
     private int id;
     private String name,warehouse;
@@ -113,18 +115,21 @@ public class Product implements Comparable<Product>{
 
     @Override
     public int compareTo(Product prod) {
-         return (this.aisle - prod.aisle);
+
+        return Comparator.comparing(Product::getAisle)
+                .thenComparing(Product::getShelf)
+                .thenComparingInt(Product::getBin)
+                .compare(this, prod);
     }
 
 
-/*
+
         @Override
-        //this is required to print the user-friendly information about the Employee
+        //this is required to print the user-friendly information about the Product object
         public String toString() {
-            return "[id=" + this.id + ", name=" + this.name + ", age=" + this.age + ", salary=" +
-                    this.salary + "]";
+            return "[" + this.id + ", " + this.name + "]";
         }
-*/
+
 
 
 }
