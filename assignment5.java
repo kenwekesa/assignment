@@ -55,7 +55,7 @@ public class assignment5 {
         Collections.sort(product_list);
 
 
-       System.out.println(product_list);
+
     }
 
     public static void getOrders(String orders_file) throws ParseException {
@@ -89,24 +89,69 @@ public class assignment5 {
     public static void preparePackingList(ArrayList<Product> prods, ArrayList<Order> orders) {
        /* ArrayList<Product> order_products=new ArrayList();
 
+        Collecti
         for(Order order: orders)
         {
             Product productt;
+
             for(Product product: prods)
             {
-                if(product.getId() == order.getId())
-                {
-                    productt = product;
-                }
+
             }
 
         }
 
     }
     */
+        Collections.sort(prods);
         Map<Order, List<Order>> orderListGrouped =(Map) order_list.stream().collect(Collectors.groupingBy(w->w.getId()));
+        //iterate over  map values
+        System.out.println("\n\n\n------------------------------------------PACKING LIST-----------------------------------------");
+        for(List<Order> grouped_orders : orderListGrouped.values()){
 
-        System.out.println(orderListGrouped);
+            if (grouped_orders.size() == 0) {
+                System.out.println("Your order is empty");
+            } else {
+                System.out.println("====================================="+
+                        grouped_orders.get(0)+"==========================================\n");
+
+                for (Order order : grouped_orders) {
+
+                Product productt;
+                ArrayList<Integer> prod_id_list= new ArrayList<>();
+
+                for(Product product: prods)
+                {
+                    prod_id_list.add(product.getId());
+                }
+
+
+                if((prod_id_list.indexOf(order.getProduct_id())!=-1))
+                {
+                    System.out.println("\n--------------------------------------------------------------\n" +
+                            "Order Date: "+ order.getDate()+
+                            "       Ordered Quantity: "+order.getQuantity()+
+                            "\n\nProduct ID: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getId()+
+                             "\nProduct Name: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getName()+
+                             "\nWarehouse: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getWarehouse()+
+                              "\nAisle: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getAisle()+
+                              "\nShelf: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getShelf()+
+                            "\nBin: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getBin()+
+                            "\nCost: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getCost()+
+                                 "\nAmount: "+ prods.get(prod_id_list.indexOf(order.getProduct_id())).getAmount()+
+                            "\n-----------------------------------------------------------------------------------");
+
+
+                }
+                else
+                {
+                    System.out.println("Product of id: " +order.getProduct_id()+"Does not exist");
+                }
+
+                }
+            }
+        }
+
     }
 
 }
