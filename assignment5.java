@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class assignment5 {
 
@@ -77,6 +78,11 @@ public class assignment5 {
             order.setDate(format.parse(order_attributes_array[1]));
             order.setProduct_id(Integer.parseInt(order_attributes_array[2]));
             order.setQuantity(Integer.parseInt(order_attributes_array[3]));
+            int index = IntStream.range(0, product_list.size())
+                    .filter(i -> Objects.equals(product_list.get(i).getId(), Integer.parseInt(order_attributes_array[2]))).findFirst().orElse(-1);
+            //order.setProduct_aisle(product_list.get(index));
+
+            System.out.println("INDEEEEEEEEX   "+index);
 
             order_list.add(order);
 
