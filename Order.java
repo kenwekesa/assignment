@@ -68,7 +68,9 @@ public class Order implements Comparable<Order>{
 
     @Override
     public int compareTo(Order order) {
-        return Comparator.comparing(Order::getId)
+        return Comparator.comparing(Order::getProduct_aisle)
+                .thenComparing(Order::getProduct_shelf)
+                .thenComparingInt(Order::getProduct_bin)
                 .compare(this, order);
     }
 
