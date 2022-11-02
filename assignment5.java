@@ -23,6 +23,10 @@ public class assignment5 {
         preparePackingList(product_list,order_list);
     }
 
+    /*
+     *Get the orders
+     * The function gets the products from the input file, subjects it to Product object to assign relevant fields
+     */
     public static void getProducts(String products_file)
     {
         List<String> productLines = null;
@@ -59,6 +63,10 @@ public class assignment5 {
 
     }
 
+    /*
+     *Get the orders
+     * The function gets the orders from the input file, subjects it to Order object to assign relevant fields
+     */
     public static void getOrders(String orders_file) throws ParseException {
         List<String> orderLines = null;
         try {
@@ -96,25 +104,19 @@ public class assignment5 {
 
     }
 
+    /*
+       *Preparing the packing list
+       *This function takes in the products list and order list, then prepares the packing list.
+     */
+
+
     public static void preparePackingList(ArrayList<Product> prods, ArrayList<Order> orders) {
-       /* ArrayList<Product> order_products=new ArrayList();
 
-        Collecti
-        for(Order order: orders)
-        {
-            Product productt;
 
-            for(Product product: prods)
-            {
 
-            }
 
-        }
-
-    }
-    */
-        Collections.sort(prods);
         Map<Order, List<Order>> orderListGrouped =(Map) order_list.stream().collect(Collectors.groupingBy(w->w.getId()));
+
         //iterate over  map values
         System.out.println("\n\n\n------------------------------------------PACKING LIST-----------------------------------------");
         for(List<Order> grouped_orders : orderListGrouped.values()){
@@ -122,7 +124,13 @@ public class assignment5 {
             if (grouped_orders.size() == 0) {
                 System.out.println("Your order is empty");
             } else {
+                /*
+                    Ordering the products in the order.
+                    This takes effect as per the Comparable interface int the Order object
+                 */
                 Collections.sort(grouped_orders);
+
+
                 System.out.println("====================================="+
                         grouped_orders.get(0)+"==========================================\n");
 
